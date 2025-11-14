@@ -1,55 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/fundraiser.schema.json",
-  "title": "FundraiserPost",
+  "$id": "https://example.com/schemas/post.schema.json",
+  "title": "TelegramPost",
   "type": "object",
-  "required": [
-    "uid",
-    "channel_id",
-    "message_id",
-    "body",
-    "original_posted_at",
-    "collected_at",
-    "donation_links",
-    "tags",
-    "media"
-  ],
+  "required": ["tg_id", "type", "text", "date", "images", "links"],
   "properties": {
-    "uid": { "type": "string" },
-    "channel_id": { "type": "integer" },
-    "channel_username": { "type": ["string", "null"] },
-    "message_id": { "type": "integer" },
-    "title": { "type": ["string", "null"], "maxLength": 256 },
-    "body": { "type": "string" },
-    "original_posted_at": { "type": "string", "format": "date-time" },
-    "collected_at": { "type": "string", "format": "date-time" },
-    "amount_requested": { "type": ["integer", "null"] },
-    "currency": { "type": ["string", "null"] },
-    "donation_links": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri-reference" },
-      "default": []
-    },
-    "tags": {
+    "tg_id": { "type": "integer", "minimum": 1 },
+    "type": { "type": "string", "enum": ["fundraising", "report"] },
+    "text": { "type": "string", "minLength": 1 },
+    "images": {
       "type": "array",
       "items": { "type": "string" },
       "default": []
     },
-    "media": {
+    "links": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["kind"],
-        "properties": {
-          "kind": { "type": "string" },
-          "file_name": { "type": ["string", "null"] },
-          "mime_type": { "type": ["string", "null"] },
-          "size": { "type": ["integer", "null"] },
-          "caption": { "type": ["string", "null"] }
-        }
-      },
+      "items": { "type": "string" },
       "default": []
     },
-    "source_url": { "type": ["string", "null"], "format": "uri" }
+    "date": { "type": "string", "format": "date-time" }
   }
 }

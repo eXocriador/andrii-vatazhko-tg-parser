@@ -222,3 +222,10 @@ coverage/
 # Build artifacts from Telegram bot
 artifacts/*
 !artifacts/.gitkeep
+
+# Parser runtime data
+python_parser/session/*
+!python_parser/session/.gitkeep
+python_parser/downloads/*
+!python_parser/downloads/.gitkeep
+python_parser/state.json
